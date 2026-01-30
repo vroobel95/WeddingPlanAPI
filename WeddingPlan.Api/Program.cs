@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WeddingPlan.Application.Commands.Users;
 using WeddingPlan.Application.Interfaces;
+using WeddingPlan.Application.Models;
 using WeddingPlan.Application.Services;
 using WeddingPlan.Infrastructure.Persistence;
 
@@ -26,6 +27,10 @@ builder.Services.AddSingleton<IJwtTokenService>(sp => new JwtTokenService(
     issuer: builder.Configuration["Jwt:Issuer"]!,
     audience: builder.Configuration["Jwt:Audience"]!
 ));
+
+var emailSettings = builder.Configuration.GetSection("Email").Get<EmailSettings>() ?? new EmailSettings();
+builder.Services.AddSingleton(emailSettings);
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 
