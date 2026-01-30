@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using WeddingPlan.Application.Commands.Users;
+using WeddingPlan.Application.Interfaces;
+using WeddingPlan.Application.Services;
 using WeddingPlan.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +17,15 @@ builder.Services.AddDbContext<WeddingPlannerDbContext>(options =>
         builder.Configuration.GetConnectionString("Default"),
         x => x.MigrationsAssembly("WeddingPlan.Infrastructure")
     ));
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommand).Assembly));
+
+builder.Services.AddSingleton<IJwtTokenService>(sp => new JwtTokenService(
+    secretKey: builder.Configuration["Jwt:SecretKey"]!,
+    issuer: builder.Configuration["Jwt:Issuer"]!,
+    audience: builder.Configuration["Jwt:Audience"]!
+));
 
 var app = builder.Build();
 
