@@ -1,8 +1,10 @@
-﻿namespace WeddingPlan.Application.Interfaces
+﻿using WeddingPlan.Application.Models;
+
+namespace WeddingPlan.Application.Interfaces
 {
     public interface IPasswordHasher
     {
-        string HashPassword(string password);
-        bool VerifyPassword(string hash, string password);
+        HashObject HashPassword(string password);
+        bool VerifyPassword(string hash, string salt, string password);
     }
 }

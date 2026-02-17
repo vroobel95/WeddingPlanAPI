@@ -14,6 +14,7 @@ namespace WeddingPlan.Infrastructure.Persistence.Configurations
             builder.Property(x => x.PasswordHash).IsRequired();
             builder.Property(x => x.PasswordSalt).IsRequired();
             builder.Property(x => x.CreatedAt).IsRequired();
+            builder.Property(x => x.ConfirmationToken);
         }
     }
 }

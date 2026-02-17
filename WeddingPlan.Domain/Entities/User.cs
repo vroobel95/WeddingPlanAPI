@@ -2,12 +2,13 @@
 {
     public class User
     {
-        public required int Id { get; set; }
+        public int Id { get; set; }
         public required string Email { get; set; }
         public required string PasswordHash { get; set; }
         public required string PasswordSalt { get; set; }
         public required string Name { get; set; }
         public bool IsEmailConfirmed { get; set; }
+        public string? ConfirmationToken { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

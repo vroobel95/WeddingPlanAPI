@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using WeddingPlan.Domain.Entities;
 
 namespace WeddingPlan.Infrastructure.Persistence
@@ -13,5 +12,6 @@ namespace WeddingPlan.Infrastructure.Persistence
         public DbSet<Invitation> Invitations { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PhotoGallery> PhotoGalleries { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

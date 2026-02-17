@@ -4,6 +4,7 @@ using WeddingPlan.Application.Interfaces;
 using WeddingPlan.Application.Models;
 using WeddingPlan.Application.Services;
 using WeddingPlan.Infrastructure.Persistence;
+using WeddingPlan.Infrastructure.Persistence.Repositiories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,12 @@ builder.Services.AddSingleton<IJwtTokenService>(sp => new JwtTokenService(
 var emailSettings = builder.Configuration.GetSection("Email").Get<EmailSettings>() ?? new EmailSettings();
 builder.Services.AddSingleton(emailSettings);
 builder.Services.AddScoped<IEmailService, EmailService>();
+
+var passwordHasherSettings = builder.Configuration.GetSection("PasswordHasher").Get<PasswordHasherSettings>() ?? new PasswordHasherSettings();
+builder.Services.AddSingleton(passwordHasherSettings);
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
