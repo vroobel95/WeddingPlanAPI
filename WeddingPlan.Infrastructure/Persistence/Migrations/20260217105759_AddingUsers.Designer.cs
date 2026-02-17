@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WeddingPlan.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using WeddingPlan.Infrastructure.Persistence;
 namespace WeddingPlan.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WeddingPlannerDbContext))]
-    partial class WeddingPlannerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260217105759_AddingUsers")]
+    partial class AddingUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
